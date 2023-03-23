@@ -5,10 +5,62 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Player Settings")]
-    [SerializeField] private float velocity;
-    
+    public float velocity;     
+    public float jumpForce;
+    public float maximumsJumpsOnAir;
+    public LayerMask Ground;
+
+    private bool playerDirection = true;
+    private Rigidbody2D rb;
+    private BoxCollider2D bc;
+    private float jumpsRemaining;
+     
+    private void Start()
+    {      
+        rb = GetComponent<Rigidbody2D>();
+        bc = GetComponent<BoxCollider2D>();
+        jumpsRemaining = maximumsJumpsOnAir;
+    }
     void Update()
     {
-        
+        PlayerMovement();
+        Jump(); 
+    }
+
+    private bool OnGround()
+    {
+        RaycastHit2D raycastHit = Physics2D.BoxCast(bc.bounds.center, new Vector2(bc.bounds.size.x, bc.bounds.size.y), 0f, Vector2.down, 0.2f, Ground);
+        return raycastHit.collider != null;
+    }
+
+    private void Jump() 
+    {
+        if (OnGround())
+        {
+            jumpsRemaining = maximumsJumpsOnAir;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && jumpsRemaining > 0)
+        {
+            jumpsRemaining--;
+            rb.velocity = new Vector2(rb.velocity.x, 0f);
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
+    }
+
+    private void PlayerMovement()
+    {
+        float move = Input.GetAxis("Horizontal"); 
+        rb.velocity = new Vector2(move * velocity, rb.velocity.y);
+        Flip(move);
+    }
+
+    private void Flip(float move)
+    {
+        if((playerDirection == true && move < 0) || playerDirection == false && move > 0)
+        {
+            playerDirection = !playerDirection;
+            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+        }
     }
 }
