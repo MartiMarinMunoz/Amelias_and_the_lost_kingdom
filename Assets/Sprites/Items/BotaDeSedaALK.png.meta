@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6a2df03fcfd32c44eb30b867e93e60c1
+guid: 076920086e44b704d85a9d6d3df01efc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 30
+  spritePixelsToUnits: 1600
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -118,22 +118,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player1_0
+      name: BotaDeSedaALK_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 48
-        height: 48
-      alignment: 9
-      pivot: {x: 0.36438742, y: 0.45897436}
+        x: 296
+        y: 333
+        width: 592
+        height: 518
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9cdbec268a27704409f20f8da6774199
-      internalID: 1235951807
+      spriteID: 79b444ed36b4d7a4daf5c0c4886f798a
+      internalID: 9749321
       vertices: []
       indices: 
       edges: []
@@ -149,7 +149,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Player1_0: 1235951807
+      BotaDeSedaALK_0: 9749321
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 

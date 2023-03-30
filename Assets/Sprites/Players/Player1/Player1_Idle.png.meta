@@ -121,10 +121,10 @@ TextureImporter:
       name: Player1_Idle_0
       rect:
         serializedVersion: 2
-        x: 6
+        x: 0
         y: 0
-        width: 19
-        height: 33
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,10 +142,10 @@ TextureImporter:
       name: Player1_Idle_1
       rect:
         serializedVersion: 2
-        x: 54
+        x: 48
         y: 0
-        width: 19
-        height: 33
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,10 +163,10 @@ TextureImporter:
       name: Player1_Idle_2
       rect:
         serializedVersion: 2
-        x: 101
+        x: 96
         y: 0
-        width: 20
-        height: 33
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,10 +184,10 @@ TextureImporter:
       name: Player1_Idle_3
       rect:
         serializedVersion: 2
-        x: 149
+        x: 144
         y: 0
-        width: 20
-        height: 33
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

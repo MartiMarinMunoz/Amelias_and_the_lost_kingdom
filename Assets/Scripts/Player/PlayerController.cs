@@ -12,14 +12,15 @@ public class PlayerController : MonoBehaviour
 
     private bool playerDirection = true;
     private Rigidbody2D rb;
-    private BoxCollider2D bc;
+    public BoxCollider2D bc;
+    private SpriteRenderer sr;
     private float jumpsRemaining;
      
     private void Start()
     {      
         rb = GetComponent<Rigidbody2D>();
-        bc = GetComponent<BoxCollider2D>();
         jumpsRemaining = maximumsJumpsOnAir;
+        sr = GetComponent<SpriteRenderer>();
     }
     void Update()
     {
@@ -60,7 +61,7 @@ public class PlayerController : MonoBehaviour
         if((playerDirection == true && move < 0) || playerDirection == false && move > 0)
         {
             playerDirection = !playerDirection;
-            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+            sr.flipX = !playerDirection;
         }
     }
 }

@@ -1217,7 +1217,6 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      tileset_37: 21300074
       tileset_18: 21300036
       tileset_86: 21300172
       tileset_79: 21300158
@@ -1225,6 +1224,7 @@ TextureImporter:
       tileset_58: 21300116
       tileset_59: 21300118
       tileset_88: 21300176
+      tileset_56: 21300112
       tileset_25: 21300050
       tileset_47: 21300094
       tileset_24: 21300048
@@ -1250,11 +1250,11 @@ TextureImporter:
       tileset_62: 21300124
       tileset_3: 21300006
       tileset_23: 21300046
-      tileset_33: 21300066
       tileset_34: 21300068
-      tileset_38: 21300076
+      tileset_33: 21300066
       tileset_78: 21300156
-      tileset_56: 21300112
+      tileset_38: 21300076
+      tileset_37: 21300074
       tileset_14: 21300028
   spritePackingTag: 
   pSDRemoveMatte: 0
