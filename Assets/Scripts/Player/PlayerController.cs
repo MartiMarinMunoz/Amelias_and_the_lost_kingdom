@@ -13,14 +13,15 @@ public class PlayerController : MonoBehaviour
     private bool playerDirection = true;
     private Rigidbody2D rb;
     public BoxCollider2D bc;
-    private SpriteRenderer sr;
+
+    [SerializeField] private SpriteRenderer sr;
+    [SerializeField] private Animator animator;
     private float jumpsRemaining;
      
     private void Start()
     {      
         rb = GetComponent<Rigidbody2D>();
         jumpsRemaining = maximumsJumpsOnAir;
-        sr = GetComponent<SpriteRenderer>();
     }
     void Update()
     {
@@ -52,6 +53,16 @@ public class PlayerController : MonoBehaviour
     private void PlayerMovement()
     {
         float move = Input.GetAxis("Horizontal"); 
+
+        if(move != 0f)
+        {
+            animator.SetBool("isRunning", true);
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
+        }
+
         rb.velocity = new Vector2(move * velocity, rb.velocity.y);
         Flip(move);
     }
