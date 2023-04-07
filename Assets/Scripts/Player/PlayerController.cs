@@ -40,6 +40,12 @@ public class PlayerController : MonoBehaviour
         if (OnGround())
         {
             jumpsRemaining = maximumsJumpsOnAir;
+            animator.SetBool("isJumping", false);
+        }
+
+        else
+        {
+            animator.SetBool("isJumping", true);
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && jumpsRemaining > 0)
