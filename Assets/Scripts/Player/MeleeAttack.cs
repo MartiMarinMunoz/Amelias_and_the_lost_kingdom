@@ -24,7 +24,7 @@ public class MeleeAttack : MonoBehaviour
         {
             if (colision.CompareTag("Enemy"))
             {
-                colision.transform.GetComponent<Enemy>().TakeDamage(meleeDamage);
+                //colision.transform.GetComponent<Enemy>().TakeDamage(meleeDamage);
             }
         }
     }
