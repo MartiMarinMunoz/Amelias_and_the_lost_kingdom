@@ -19,7 +19,7 @@ public class HealthController : MonoBehaviour
     {
         health -= damage;
         healthBar.ChangeCurrentHealth(health);
-        if(health < 0)
+        if(health <= 0)
         {
             Destroy(gameObject);
         }
