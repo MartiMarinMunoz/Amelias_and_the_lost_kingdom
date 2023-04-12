@@ -23,8 +23,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float damageRadio;
     [SerializeField] private float damage;   
     [SerializeField] private float nextAttack;
-    private float cooldownAttack;   
-     
+    private float cooldownAttack;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -36,7 +36,6 @@ public class PlayerController : MonoBehaviour
         Jump();
         Attack();
     }
-
     private void PlayerMovement()
     {
         float move = Input.GetAxis("Horizontal");

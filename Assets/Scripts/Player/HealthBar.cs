@@ -22,7 +22,7 @@ public class HealthBar : MonoBehaviour
         slider.value = amountHealth;
     }
 
-    public void InitialHealthBar(float amountHealth)
+    public void StartHealthBar(float amountHealth)
     {
         ChangeMaxHealth(amountHealth);
         ChangeCurrentHealth(amountHealth);
