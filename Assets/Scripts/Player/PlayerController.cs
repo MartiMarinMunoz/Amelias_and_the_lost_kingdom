@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float damageRadio;
     [SerializeField] private float damage;   
     [SerializeField] private float nextAttack;
-    [SerializeField] private GameObject meleeRadio;
+    //[SerializeField] private GameObject meleeRadio;
 
     private float cooldownAttack;
 
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     {
         PlayerMovement();
         Jump();
-        Attack();
+        Attack();     
     }
     private void PlayerMovement()
     {
@@ -86,9 +86,10 @@ public class PlayerController : MonoBehaviour
         {
             playerDirection = !playerDirection;
             sr.flipX = !playerDirection;
-            meleeRadio.transform.position = new Vector2(transform.position.x * -1, 0);
+            damageController.transform.localPosition = new Vector2(damageController.transform.localPosition.x * -1, damageController.transform.localPosition.y);         
         }
     }
+
     private void Attack()
     {
         if(cooldownAttack > 0)
