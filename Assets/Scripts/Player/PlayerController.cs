@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
         {
             playerDirection = !playerDirection;
             sr.flipX = !playerDirection;
-            meleeRadio.transform.position = new Vector2(meleeRadio.transform.position.x * -1, 0);
+            meleeRadio.transform.position = new Vector2(transform.position.x * -1, 0);
         }
     }
     private void Attack()
