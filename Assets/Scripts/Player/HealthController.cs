@@ -24,5 +24,10 @@ public class HealthController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void AddHealth( float _value)
+    {
+        health = Mathf.Clamp(health + _value, 0, maxHealth);
+    }
     
 }
