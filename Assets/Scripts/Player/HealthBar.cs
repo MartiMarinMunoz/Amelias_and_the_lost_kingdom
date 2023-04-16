@@ -5,21 +5,21 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    private Slider slider;
+    private Slider healthBar;
 
     void Start()
     {
-        slider = GetComponent<Slider>();
+        healthBar = GetComponent<Slider>();
     }
 
     public void ChangeMaxHealth(float maxHealth)
     {
-        slider.maxValue = maxHealth;
+        healthBar.maxValue = maxHealth;
     }
 
     public void ChangeCurrentHealth(float amountHealth)
     {
-        slider.value = amountHealth;
+        healthBar.value = amountHealth;
     }
 
     public void StartHealthBar(float amountHealth)
