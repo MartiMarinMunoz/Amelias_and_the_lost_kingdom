@@ -33,14 +33,17 @@ public class HealthController : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
+    public IEnumerator TakeDamage(float damage)
     {
         currentHealth -= damage;
+        GetComponentInChildren<Animator>().SetBool("Damage", true);
         HPBarUpdate();
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
         }
+        yield return new WaitForSeconds(0.05f);
+        GetComponentInChildren<Animator>().SetBool("Damage", false);
     }
 
     public void AddHealth(float _value)
