@@ -1,9 +1,9 @@
 using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HealthController : MonoBehaviour
 {
@@ -11,13 +11,13 @@ public class HealthController : MonoBehaviour
     [SerializeField] private float currentHealth;
     [SerializeField] private float maxHealth;
     [SerializeField] private Image healthBar;
-    [SerializeField] private TextMeshProUGUI hojasTMP;
-    [SerializeField] private int HojasSaves;
+    [SerializeField] private TextMeshProUGUI sheetsTMP;
+    [SerializeField] private int sheetsSaves;
 
     void Start()
     {
         currentHealth = maxHealth;
-        hojasTMP.text = HojasSaves.ToString();
+        sheetsTMP.text = sheetsSaves.ToString();
     }
 
     private void Update()
@@ -28,7 +28,7 @@ public class HealthController : MonoBehaviour
             if (currentHealth < 120)
             {
                 AddHealth(20);
-                hojasTMP.text = HojasSaves.ToString();
+                sheetsTMP.text = sheetsSaves.ToString();
             }
         }
     }
@@ -48,18 +48,18 @@ public class HealthController : MonoBehaviour
 
     public void AddHealth(float _value)
     {
-        if (HojasSaves > 0)
+        if (sheetsSaves > 0)
         {
             currentHealth = Mathf.Clamp(currentHealth + _value, 0, maxHealth);
-            HojasSaves--;
-            hojasTMP.text = HojasSaves.ToString();
+            sheetsSaves--;
+            sheetsTMP.text = sheetsSaves.ToString();
         }
     }
 
     public void UpdateHoja()
     {
-        HojasSaves++;
-        hojasTMP.text = HojasSaves.ToString();
+        sheetsSaves++;
+        sheetsTMP.text = sheetsSaves.ToString();
     }
 
     public void HPBarUpdate()
