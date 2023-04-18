@@ -13,11 +13,13 @@ public class HealthController : MonoBehaviour
     [SerializeField] private Image healthBar;
     [SerializeField] private TextMeshProUGUI sheetsTMP;
     [SerializeField] private int sheetsSaves;
+    Animator anim;
 
     void Start()
     {
         currentHealth = maxHealth;
         sheetsTMP.text = sheetsSaves.ToString();
+        anim = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -36,14 +38,14 @@ public class HealthController : MonoBehaviour
     public IEnumerator TakeDamage(float damage)
     {
         currentHealth -= damage;
-        GetComponentInChildren<Animator>().SetBool("Damage", true);
+        anim.SetTrigger("Damage");
         HPBarUpdate();
         if (currentHealth <= 0)
         {
             Destroy(gameObject);
         }
-        yield return new WaitForSeconds(0.05f);
-        GetComponentInChildren<Animator>().SetBool("Damage", false);
+        yield return anim.GetCurrentAnimatorClipInfo(0).Length - 0.25f;
+        //anim.SetTrigger("Damage");
     }
 
     public void AddHealth(float _value)

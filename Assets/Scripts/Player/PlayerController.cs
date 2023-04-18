@@ -5,23 +5,23 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Player Settings")]
-    public LayerMask Ground;
-    public float velocity;
-    private bool playerDirection = true;
+    [SerializeField] private LayerMask Ground;
+    [SerializeField] private float velocity;
+    [SerializeField] private bool playerDirection = true;
     private Rigidbody2D rb;
     public BoxCollider2D feets;
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private Animator animator;
 
     [Header("Jumping Settings")]
-    public float jumpForce;
-    public float maximumsJumpsOnAir;
+    [SerializeField] private float jumpForce;
+    [SerializeField] private float maximumsJumps;
     private float jumpsRemaining;
 
     [Header("Attcak Settings")]
     [SerializeField] private Transform damageController;
     [SerializeField] private float damageRadio;
-    [SerializeField] private float damage;   
+    [SerializeField] private float damage;
     [SerializeField] private float nextAttack;
     //[SerializeField] private GameObject meleeRadio;
 
@@ -30,38 +30,30 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        jumpsRemaining = maximumsJumpsOnAir;
+        jumpsRemaining = maximumsJumps;
     }
     void Update()
     {
         PlayerMovement();
         Jump();
-        Attack();     
+        Attack();
     }
     private void PlayerMovement()
     {
         float move = Input.GetAxis("Horizontal");
 
-        if (move != 0f)
-        {
-            animator.SetBool("isRunning", true);
-        }
-        else
-        {
-            animator.SetBool("isRunning", false);
-        }
+        Flip(move);
+        animator.SetBool("isRunning", Mathf.Abs(move) > 0.1f);
 
         rb.velocity = new Vector2(move * velocity, rb.velocity.y);
-        Flip(move);
     }
     private void Jump()
     {
         if (OnGround())
         {
-            jumpsRemaining = maximumsJumpsOnAir;
+            jumpsRemaining = maximumsJumps;
             animator.SetBool("isJumping", false);
         }
-
         else
         {
             animator.SetBool("isJumping", true);
@@ -70,7 +62,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && jumpsRemaining > 0)
         {
             jumpsRemaining--;
-            rb.velocity = new Vector2(rb.velocity.x, 0f);
+            rb.velocity = new Vector2(rb.velocity.x, 0);
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
     }
@@ -82,17 +74,17 @@ public class PlayerController : MonoBehaviour
 
     private void Flip(float move)
     {
-        if((playerDirection == true && move < 0) || playerDirection == false && move > 0)
+        if ((playerDirection == true && move < 0) || playerDirection == false && move > 0)
         {
             playerDirection = !playerDirection;
             sr.flipX = !playerDirection;
-            damageController.transform.localPosition = new Vector2(damageController.transform.localPosition.x * -1, damageController.transform.localPosition.y);         
+            damageController.transform.localPosition = new Vector2(damageController.transform.localPosition.x * -1, damageController.transform.localPosition.y);
         }
     }
 
     private void Attack()
     {
-        if(cooldownAttack > 0)
+        if (cooldownAttack > 0)
         {
             cooldownAttack -= Time.deltaTime;
         }
@@ -104,7 +96,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnAttack()
     {
-        animator.SetTrigger("Damage");
+        animator.SetTrigger("Attack");
         Collider2D[] objects = Physics2D.OverlapCircleAll(damageController.position, damageRadio);
 
         foreach (Collider2D colisioned in objects)
@@ -120,6 +112,9 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(damageController.position, damageRadio);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * 0.5f);
     }
 
 }

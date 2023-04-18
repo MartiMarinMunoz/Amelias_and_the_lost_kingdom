@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public PlayerController target;
-    public float smoothTime = 0.3f;
+    public float smoothTime = ;
     public float offsetX;
     Vector3 velocity;
     public bool Rightoffset { get; set; }
