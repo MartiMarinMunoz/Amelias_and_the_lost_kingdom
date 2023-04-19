@@ -25,12 +25,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float nextAttack;
     //[SerializeField] private GameObject meleeRadio;
 
+    public Vector2 initialPosition { get; set; }
+    public Quaternion initialRotation { get; set; }
+
     private float cooldownAttack;
+
+    HealthController health;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        health = GetComponent<HealthController>();
         jumpsRemaining = maximumsJumps;
+        initialPosition = transform.position;
+        initialRotation = transform.rotation;
     }
     void Update()
     {
@@ -107,14 +115,19 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    public void MoveCharacter(Vector2 position, Quaternion rotation)
+    {
+        gameObject.transform.Translate(Vector2.zero);
 
+        gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
+        transform.position = position;
+        transform.rotation = rotation;
+        gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(damageController.position, damageRadio);
-
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * 0.5f);
     }
 
 }

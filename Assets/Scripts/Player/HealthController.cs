@@ -35,7 +35,7 @@ public class HealthController : MonoBehaviour
         }
     }
 
-    public IEnumerator TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
         anim.SetTrigger("Damage");
@@ -44,8 +44,6 @@ public class HealthController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        yield return anim.GetCurrentAnimatorClipInfo(0).Length - 0.25f;
-        //anim.SetTrigger("Damage");
     }
 
     public void AddHealth(float _value)

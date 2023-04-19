@@ -4,29 +4,13 @@ using UnityEngine;
 
 public class CheckpointController : MonoBehaviour
 {
-    private RespawnController respawn;
-
-    private void Awake()
-    {
-        respawn = GameObject.FindGameObjectWithTag("ReSpawn").GetComponent<RespawnController>();    
-    }
-
-    void Start()
-    {
-        
-    }
-
-    
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            respawn.respawnPoint = this.gameObject;
+            PlayerController player = other.GetComponent<PlayerController>();
+            player.initialPosition = other.transform.position;
+            player.initialRotation = other.transform.rotation;
         }
     }
 }

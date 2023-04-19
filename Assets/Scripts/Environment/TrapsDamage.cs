@@ -10,7 +10,9 @@ public class TrapsDamage : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            collision.GetComponent<HealthController>().StartCoroutine(collision.GetComponent<HealthController>().TakeDamage(damage));
+            PlayerController player = collision.GetComponent<PlayerController>();
+            player.MoveCharacter(player.initialPosition, player.initialRotation);
+            collision.GetComponent<HealthController>().TakeDamage(20);
         }
     }
 }

@@ -37,7 +37,7 @@ Transform:
   - {fileID: 6974577494330776257}
   - {fileID: 6974577494364178837}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6974577493798045314
 MonoBehaviour:
@@ -60,7 +60,7 @@ MonoBehaviour:
   sr: {fileID: 6974577495000768660}
   animator: {fileID: 6974577495000768663}
   jumpForce: 7.2
-  maximumsJumps: 2
+  maximumsJumps: 1
   damageController: {fileID: 6974577494330776257}
   damageRadio: 0.3
   damage: 20
