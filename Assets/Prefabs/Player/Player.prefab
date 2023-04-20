@@ -59,8 +59,8 @@ MonoBehaviour:
   feets: {fileID: 6974577494364178835}
   sr: {fileID: 6974577495000768660}
   animator: {fileID: 6974577495000768663}
-  jumpForce: 7.2
-  maximumsJumps: 1
+  jumpForce: 7.3
+  totalJump: 1
   damageController: {fileID: 6974577494330776257}
   damageRadio: 0.3
   damage: 20

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,8 +16,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Jumping Settings")]
     [SerializeField] private float jumpForce;
-    [SerializeField] private float maximumsJumps;
-    private float jumpsRemaining;
+    [SerializeField] private float totalJump;
+    private float currentJump;
 
     [Header("Attcak Settings")]
     [SerializeField] private Transform damageController;
@@ -30,20 +31,19 @@ public class PlayerController : MonoBehaviour
 
     private float cooldownAttack;
 
-    HealthController health;
+    //HealthController health;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        health = GetComponent<HealthController>();
-        jumpsRemaining = maximumsJumps;
+        //health = GetComponent<HealthController>();
         initialPosition = transform.position;
         initialRotation = transform.rotation;
     }
+
     void Update()
     {
         PlayerMovement();
-        Jump();
         Attack();
     }
     private void PlayerMovement()
@@ -54,24 +54,29 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isRunning", Mathf.Abs(move) > 0.1f);
 
         rb.velocity = new Vector2(move * velocity, rb.velocity.y);
+        Jump();
     }
     private void Jump()
     {
         if (OnGround())
         {
-            jumpsRemaining = maximumsJumps;
             animator.SetBool("isJumping", false);
+            if (Input.GetButtonDown("Jump"))
+            {
+                currentJump = 0;
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                //rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            }
         }
         else
         {
             animator.SetBool("isJumping", true);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space) && jumpsRemaining > 0)
-        {
-            jumpsRemaining--;
-            rb.velocity = new Vector2(rb.velocity.x, 0);
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            if (Input.GetButtonDown("Jump") && currentJump < totalJump)
+            {
+                currentJump++;
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                //rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            }
         }
     }
     private bool OnGround()
@@ -115,10 +120,10 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    public void MoveCharacter(Vector2 position, Quaternion rotation)
+    public IEnumerator MoveCharacter(Vector2 position, Quaternion rotation)
     {
+        yield return animator.GetCurrentAnimatorClipInfo(0).Length;
         gameObject.transform.Translate(Vector2.zero);
-
         gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
         transform.position = position;
         transform.rotation = rotation;
