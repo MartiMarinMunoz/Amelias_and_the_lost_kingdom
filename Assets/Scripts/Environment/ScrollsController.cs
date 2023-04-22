@@ -30,7 +30,7 @@ public class ScrollsController : MonoBehaviour
         {
             Time.timeScale = activePanel?1:0;
             activePanel = !activePanel;
-            panel.SetActive(activePanel);        
+            panel.SetActive(activePanel);       
         }
     }
 }
