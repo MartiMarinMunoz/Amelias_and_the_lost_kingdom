@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
         {
             cooldownAttack -= Time.deltaTime;
         }
-        if (Input.GetButtonDown("Fire1") && cooldownAttack <= 0)
+        if (Input.GetButtonDown("Fire2") && cooldownAttack <= 0)
         {
             OnAttack();
             cooldownAttack = nextAttack;

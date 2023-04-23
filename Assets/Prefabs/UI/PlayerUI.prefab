@@ -1578,6 +1578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsPanel: {fileID: 486955863}
+  player: {fileID: 0}
 --- !u!1 &7226933750836746610
 GameObject:
   m_ObjectHideFlags: 0

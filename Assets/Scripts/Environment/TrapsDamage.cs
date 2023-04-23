@@ -13,7 +13,7 @@ public class TrapsDamage : MonoBehaviour
             PlayerController player = collision.GetComponent<PlayerController>();
             StartCoroutine(player.MoveCharacter(player.initialPosition, player.initialRotation));
             player.MoveCharacter(player.initialPosition, player.initialRotation);
-            collision.GetComponent<HealthController>().TakeDamage(20);
+            collision.GetComponent<HealthController>().TakeDamage(damage);
         }
     }
 }
