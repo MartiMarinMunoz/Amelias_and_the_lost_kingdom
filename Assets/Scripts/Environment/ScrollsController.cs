@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ScrollsController : MonoBehaviour
 {
@@ -10,10 +11,13 @@ public class ScrollsController : MonoBehaviour
     private PlayerController player;
     private SettingsController settings;
 
+    [SerializeField] private GameObject text;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         settings = GameObject.FindGameObjectWithTag("UI").GetComponent<SettingsController>();
+        text.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -21,6 +25,7 @@ public class ScrollsController : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             inColision = true;
+            text.SetActive(true);
         }
     }
 
@@ -29,6 +34,7 @@ public class ScrollsController : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             inColision = false;
+            text.SetActive(false);
         }
     }
 
