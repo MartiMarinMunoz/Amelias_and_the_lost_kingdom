@@ -875,7 +875,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
+        m_TargetAssemblyTypeName: SceneLevelController, Assembly-CSharp
         m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
@@ -1009,7 +1009,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
+        m_TargetAssemblyTypeName: SceneLevelController, Assembly-CSharp
         m_MethodName: Level
         m_Mode: 1
         m_Arguments:
