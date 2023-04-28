@@ -13,7 +13,6 @@ public class HealthController : MonoBehaviour
     [SerializeField] private Image healthBar;
     [SerializeField] private TextMeshProUGUI sheetsTMP;
     [SerializeField] private int sheetsSaves;
-    [SerializeField] private SettingsController settings;
     Animator anim;
 
     void Start()
@@ -43,7 +42,6 @@ public class HealthController : MonoBehaviour
         HPBarUpdate();
         if (currentHealth <= 0)
         {
-            settings.isDead = true;
             Destroy(gameObject);
         }
     }

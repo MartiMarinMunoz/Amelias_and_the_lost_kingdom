@@ -24,6 +24,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float damageRadio;
     [SerializeField] private float damage;
     [SerializeField] private float nextAttack;
+
+    [Header("KnockBack Settings")]
+    public float KBForce;
+    public float KBCounter;
+    public float KBTotalTime;
+
+    public bool KnockFromRight;
     //[SerializeField] private GameObject meleeRadio;
 
     public Vector2 initialPosition { get; set; }
@@ -53,7 +60,23 @@ public class PlayerController : MonoBehaviour
         Flip(move);
         animator.SetBool("isRunning", Mathf.Abs(move) > 0.1f);
 
-        rb.velocity = new Vector2(move * velocity, rb.velocity.y);
+        if (KBCounter <= 0)
+        {
+            rb.velocity = new Vector2(move * velocity, rb.velocity.y);
+        }
+        else
+        {
+            if (KnockFromRight == true)
+            {
+                rb.velocity = new Vector2(-KBForce, KBForce);
+            }
+            if (KnockFromRight == false)
+            {
+                rb.velocity = new Vector2(KBForce, KBForce);
+            }
+
+            KBCounter -= Time.deltaTime;
+        }
         Jump();
     }
     private void Jump()
@@ -101,7 +124,7 @@ public class PlayerController : MonoBehaviour
         {
             cooldownAttack -= Time.deltaTime;
         }
-        if (Input.GetButtonDown("Fire2") && cooldownAttack <= 0)
+        if (Input.GetButtonDown("Fire1") && cooldownAttack <= 0)
         {
             OnAttack();
             cooldownAttack = nextAttack;
