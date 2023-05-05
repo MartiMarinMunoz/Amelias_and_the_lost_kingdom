@@ -8,7 +8,7 @@ using TMPro;
 public class HealthController : MonoBehaviour
 {
     [Header("Health Settings")]
-    [SerializeField] private float currentHealth;
+    [SerializeField] public float currentHealth;
     [SerializeField] private float maxHealth;
     [SerializeField] private Image healthBar;
     [SerializeField] private TextMeshProUGUI sheetsTMP;
