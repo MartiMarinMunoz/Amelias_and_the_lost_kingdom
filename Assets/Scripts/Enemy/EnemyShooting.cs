@@ -7,11 +7,13 @@ public class EnemyShooting : MonoBehaviour
     public GameObject bullet;
     public Transform bulletPos;
     private float timer;
+    private Animator animator;
     private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -27,14 +29,25 @@ public class EnemyShooting : MonoBehaviour
         {
             timer += Time.deltaTime;
 
-            if (timer > 2)
+            if (timer > 1.5)
             {
                 timer = 0;
                 shoot();
             }
         }
 
-   
+        float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+        if (distanceToPlayer < 7f)
+        {
+            animator.SetBool("isTrigger", true);
+
+        }
+        else if (distanceToPlayer > 7f)
+        {
+            animator.SetBool("isTrigger", false);
+        }
+
+
     }
 
     void shoot()
