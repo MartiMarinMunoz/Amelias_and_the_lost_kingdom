@@ -5,24 +5,24 @@ using UnityEngine;
 public class MonsterDamage : MonoBehaviour
 {
     public int damage;
-    public HealthController HealthController;
-    public PlayerController playerController;
-    // Start is called before the first frame update
+    //public HealthController HealthController;
+    //public PlayerController playerController;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            playerController.KBCounter = playerController.KBTotalTime;
+            PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+            player.KBCounter = player.KBTotalTime;
             if (collision.transform.position.x <= transform.position.x)
             {
-                playerController.KnockFromRight = true;
+                player.KnockFromRight = true;
             }
             if (collision.transform.position.x >= transform.position.x)
             {
-                playerController.KnockFromRight = false;
+                player.KnockFromRight = false;
             }
-            HealthController.TakeDamage(damage);
+            collision.gameObject.GetComponent<HealthController>().TakeDamage(damage);
         }
     }
 }

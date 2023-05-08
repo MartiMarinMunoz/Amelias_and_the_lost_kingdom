@@ -11,20 +11,19 @@ public class enemyPatrol : MonoBehaviour
     private Transform currentPoint;
     public float speed;
 
-    public Transform playerTransform;
+    private Transform playerTransform;
     public bool isChasing;
     public float chaseDistance;
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         currentPoint = pointB.transform;
         anim.SetBool("isRunning", true);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isChasing)
@@ -38,6 +37,10 @@ public class enemyPatrol : MonoBehaviour
             {
                 transform.localScale = new Vector3(-1, 1, 1);
                 transform.position += Vector3.right * speed * Time.deltaTime;
+            }
+            if(Vector2.Distance(transform.position, playerTransform.position) > chaseDistance)
+            {
+                isChasing = false;
             }
         }
         else
@@ -68,9 +71,6 @@ public class enemyPatrol : MonoBehaviour
                 currentPoint = pointB.transform;
             }
         }
-
-
-
     }
 
     private void flip()
