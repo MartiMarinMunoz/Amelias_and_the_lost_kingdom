@@ -137,7 +137,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -7.243, y: -71.387}
+  m_AnchoredPosition: {x: -7.272, y: -71.387}
   m_SizeDelta: {x: 0.4132, y: 0.1438}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4918178000423679709
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press E
+  m_text: '[E] Open'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b633b6dee60f2b74e8bdc98297f3c5d3, type: 2}
   m_sharedMaterial: {fileID: -4761202740924118695, guid: b633b6dee60f2b74e8bdc98297f3c5d3, type: 2}
@@ -231,7 +231,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -0.26688004, w: 0}
+  m_margin: {x: 0, y: 0, z: -0.35191727, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -270,7 +270,7 @@ Transform:
   m_Children:
   - {fileID: 4918177998583873173}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4918178000525634461
 SpriteRenderer:
