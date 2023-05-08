@@ -5,20 +5,25 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    [Header("General Settings")]
     [SerializeField] private float life;
+    [SerializeField] private float damage = 10f;
+    [SerializeField] private float enemySpeed;
 
     private Animator animator;
     private GameObject player;
-    private enemyPatrol enemyPatrol;
-    public float damage = 10f;
-    private float CurrentSpeed;
-    
+    private Rigidbody2D rb;
+
+    [Header("Movment Settings")]
+    public float movmentSpeed = 5f;
+    public List<Transform> patrolList;
+    int currentPatrolPoint = 0;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
-        enemyPatrol = GetComponent<enemyPatrol>();
-        CurrentSpeed = enemyPatrol.speed;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public void TakeDamage(float damage)
@@ -32,21 +37,52 @@ public class EnemyController : MonoBehaviour
     }
     void Update()
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-
-        if (distanceToPlayer < 1.5f)
+        if (Vector2.Distance(transform.position, patrolList[currentPatrolPoint].position) < 0.1f)
         {
-            enemyPatrol.speed = 0f;
-            animator.SetBool("AttackTrigger", true);
-            animator.SetBool("isRunning", false);
+            currentPatrolPoint++;
 
+            if (currentPatrolPoint >= patrolList.Count)
+            {
+                currentPatrolPoint = 0;
+            }
+
+            if (patrolList[currentPatrolPoint].position.x > transform.position.x)
+            {
+                Flip(0);
+            }
+            else
+            {
+                Flip(180);
+            }
         }
-        else if (distanceToPlayer > 1.5f)
-        {
-            enemyPatrol.speed = CurrentSpeed;
-            animator.SetBool("AttackTrigger", false);
-            animator.SetBool("isRunning", true);
-        }
+
+        //if (distanceToPlayer < 1.5f)
+        //{
+        //    animator.SetBool("AttackTrigger", true);
+
+        //}
+        //else if (distanceToPlayer > 1.5f)
+        //{
+        //    animator.SetBool("AttackTrigger", false);
+        //}
+    }
+
+    private void FixedUpdate()
+    {
+        rb.transform.position = Vector2.MoveTowards(transform.position, patrolList[currentPatrolPoint].position, movmentSpeed * Time.fixedDeltaTime);
+        animator.SetBool("isRunning", true);
+    }
+
+    void Flip(int value)
+    {
+        transform.eulerAngles = new Vector3(0, value, 0);
+    }
+
+    private void Death()
+    {
+        animator.SetTrigger("Death");
+        Debug.Log("Muere");
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -67,11 +103,6 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void Death()
-    {
-        animator.SetTrigger("Death");
-        Debug.Log("Muere");
-        Destroy(gameObject);
-    }
+    
 }
 

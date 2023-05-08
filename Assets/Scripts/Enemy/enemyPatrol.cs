@@ -38,17 +38,17 @@ public class enemyPatrol : MonoBehaviour
                 transform.localScale = new Vector3(-1, 1, 1);
                 transform.position += Vector3.right * speed * Time.deltaTime;
             }
-            if(Vector2.Distance(transform.position, playerTransform.position) > chaseDistance)
-            {
-                isChasing = false;
-            }
+            //if(Vector2.Distance(transform.position, playerTransform.position) > chaseDistance)
+            //{
+            //    isChasing = false;
+            //}
         }
         else
         {
-            if (Vector2.Distance(transform.position, playerTransform.position) < chaseDistance)
-            {
-                isChasing = true;
-            }
+            //if (Vector2.Distance(transform.position, playerTransform.position) < chaseDistance)
+            //{
+            //    isChasing = true;
+            //}
 
             Vector2 point = currentPoint.position - transform.position;
             if (currentPoint == pointB.transform)
