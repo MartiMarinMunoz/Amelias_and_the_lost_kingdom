@@ -25,7 +25,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float detectionRange = 5f;
     [SerializeField] private Transform damageController;
     [SerializeField] private float attackRange = 1f;
-    [SerializeField] private float attackDelay = 1f;
+    [SerializeField] private float attackDelay = 0.25f;
 
     private bool isInRange = false;
     private float attackTimer = 0f;
@@ -57,7 +57,19 @@ public class EnemyController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.transform.position = Vector2.MoveTowards(transform.position, patrolList[currentPatrolPoint].position, curretnSpeed * Time.fixedDeltaTime);
+        Vector2 target;
+
+        if (isInRange)
+            target = new Vector2(player.transform.position.x, transform.position.y);
+        else
+            target = patrolList[currentPatrolPoint].position;
+
+        rb.transform.position = Vector2.MoveTowards(transform.position, target, curretnSpeed * Time.fixedDeltaTime);
+
+        if (target.x > transform.position.x)
+            Flip(0);
+        else if (target.x < transform.position.x)
+            Flip(180);
     }
 
     private void EnemyMovement()
@@ -84,30 +96,30 @@ public class EnemyController : MonoBehaviour
 
     private void PlayerFollow()
     {
-        Vector3 targetPosition = patrolList[currentPatrolPoint].position;
         if (player != null)
         {
             float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
             if (distanceToPlayer < detectionRange)
             {
                 isInRange = true;
-                if (distanceToPlayer > attackRange)
+                if (distanceToPlayer < attackRange)
                 {
-                    targetPosition = player.transform.position;
-                }
-                else
-                {
+                    animator.SetBool("isRunning", false);
+                    curretnSpeed = 0f;
                     if (attackTimer <= 0f)
                     {
                         OnAttack();
-                        animator.SetBool("isRunning", false);
-                        curretnSpeed = 0f;
                         attackTimer = attackDelay;
                     }
                     else
                     {
                         attackTimer -= Time.deltaTime;
                     }
+                }
+                else
+                {
+                    animator.SetBool("isRunning", true);
+                    curretnSpeed = speedEnemy;
                 }
             }
             else
@@ -117,24 +129,13 @@ public class EnemyController : MonoBehaviour
                 curretnSpeed = speedEnemy;
             }
         }
-
-        if (isInRange)
-        {
-            //animator.SetBool("isRunning", false);
-            //curretnSpeed = 0f;
-        }
-
-        Vector3 direction = targetPosition - transform.position;
-        direction.Normalize();
-
-        transform.position += direction * +curretnSpeed * Time.deltaTime;
     }
 
     private void OnAttack()
     {
         animator.SetTrigger("AttackTrigger");
         Collider2D[] objects = Physics2D.OverlapCircleAll(damageController.position, attackRange);
-
+        print("Atake");
         foreach (Collider2D colisioned in objects)
         {
             if (colisioned.CompareTag("Player"))
