@@ -128,6 +128,37 @@ Transform:
   m_Father: {fileID: 6002469990676565653}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5214679957493930692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6844911924728218314}
+  m_Layer: 0
+  m_Name: MeleRadioEnemy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6844911924728218314
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5214679957493930692}
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 18.349998, y: -1.3094879, z: -7.909876}
+  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9016806430102685179}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9016806430102685181
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +191,8 @@ Transform:
   m_LocalPosition: {x: 18.35, y: 1.3094878, z: 7.909876}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6844911924728218314}
   m_Father: {fileID: 6002469990676565653}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -261,6 +293,7 @@ MonoBehaviour:
   - {fileID: 1106083435069887752}
   - {fileID: 1106083434589973051}
   detectionRange: 2
+  damageController: {fileID: 0}
   attackRange: 0.75
   attackDelay: 1
 --- !u!95 &9016806430102685176

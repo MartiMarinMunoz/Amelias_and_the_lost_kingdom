@@ -23,6 +23,7 @@ public class EnemyController : MonoBehaviour
 
     [Header("Atakc Range")]
     [SerializeField] private float detectionRange = 5f;
+    [SerializeField] private Transform damageController;
     [SerializeField] private float attackRange = 1f;
     [SerializeField] private float attackDelay = 1f;
 
@@ -98,9 +99,9 @@ public class EnemyController : MonoBehaviour
                 {
                     if (attackTimer <= 0f)
                     {
+                        OnAttack();
                         animator.SetBool("isRunning", false);
                         curretnSpeed = 0f;
-                        animator.SetTrigger("AttackTrigger");
                         attackTimer = attackDelay;
                     }
                     else
@@ -129,6 +130,20 @@ public class EnemyController : MonoBehaviour
         transform.position += direction * +curretnSpeed * Time.deltaTime;
     }
 
+    private void OnAttack()
+    {
+        animator.SetTrigger("AttackTrigger");
+        Collider2D[] objects = Physics2D.OverlapCircleAll(damageController.position, attackRange);
+
+        foreach (Collider2D colisioned in objects)
+        {
+            if (colisioned.CompareTag("Player"))
+            {
+                colisioned.transform.GetComponent<HealthController>().TakeDamage(damage);
+            }
+        }
+    }
+
     void Flip(int value)
     {
         transform.eulerAngles = new Vector3(0, value, 0);
@@ -137,44 +152,7 @@ public class EnemyController : MonoBehaviour
     private void Death()
     {
         animator.SetTrigger("Death");
-        Debug.Log("Muere");
         Destroy(gameObject);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            PlayerController player = collision.gameObject.GetComponent<PlayerController>();
-            player.KBCounter = player.KBTotalTime;
-            if (collision.transform.position.x <= transform.position.x)
-            {
-                player.KnockFromRight = true;
-            }
-            if (collision.transform.position.x >= transform.position.x)
-            {
-                player.KnockFromRight = false;
-            }
-            collision.gameObject.GetComponent<HealthController>().TakeDamage(damage);
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            PlayerController player = collision.gameObject.GetComponent<PlayerController>();
-            player.KBCounter = player.KBTotalTime;
-            if (collision.transform.position.x <= transform.position.x)
-            {
-                player.KnockFromRight = true;
-            }
-            if (collision.transform.position.x >= transform.position.x)
-            {
-                player.KnockFromRight = false;
-            }
-            collision.gameObject.GetComponent<HealthController>().TakeDamage(damage);
-        }
     }
 
     void OnDrawGizmos()
@@ -182,7 +160,7 @@ public class EnemyController : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectionRange);
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireSphere(damageController.position, attackRange);
     }
 }
 
