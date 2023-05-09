@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6974577493798045342}
   - component: {fileID: 1602500048}
   - component: {fileID: 6302227486091697131}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -67,6 +67,10 @@ MonoBehaviour:
   damageRadio: 0.3
   damage: 20
   nextAttack: 0
+  KBForce: 0
+  KBCounter: 0
+  KBTotalTime: 0
+  KnockFromRight: 0
 --- !u!114 &6974577493798045317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,7 +88,6 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   sheetsTMP: {fileID: 0}
   sheetsSaves: 3
-  settings: {fileID: 0}
 --- !u!114 &6974577493798045316
 MonoBehaviour:
   m_ObjectHideFlags: 0
