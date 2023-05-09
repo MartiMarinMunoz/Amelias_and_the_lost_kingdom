@@ -15,6 +15,7 @@ public class SettingsController : MonoBehaviour
     {
         isPaused = false;
         isDead = false;
+        Time.timeScale = 1;
     }
     private void Update()
     {
