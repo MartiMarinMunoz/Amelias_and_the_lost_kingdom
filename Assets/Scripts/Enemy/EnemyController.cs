@@ -170,7 +170,7 @@ public class EnemyController : MonoBehaviour
     public void Death()
     {
         animator.SetTrigger("Death");
-        Destroy(gameObject);
+        Destroy(gameObject, 0.1f);
     }
     public void TakeDamage(int damage)
     {
