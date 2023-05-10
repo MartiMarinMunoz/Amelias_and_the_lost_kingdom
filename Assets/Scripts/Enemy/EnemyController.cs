@@ -7,7 +7,7 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [Header("General Settings")]
-    [SerializeField] private float life;
+    [SerializeField] private int life;
     [SerializeField] private float damage = 10f;
 
     private Animator animator;
@@ -20,6 +20,12 @@ public class EnemyController : MonoBehaviour
 
     int currentPatrolPoint = 0;
     float speedEnemy;
+
+    [Header("Ground Detection settings")]
+    [SerializeField] private Transform groundPoint;
+    [SerializeField] private LayerMask groundLayer;
+    float distance = 0.25f;
+    RaycastHit2D groundInfo;
 
     [Header("Atakc Range")]
     [SerializeField] private float detectionRange = 5f;
@@ -40,15 +46,7 @@ public class EnemyController : MonoBehaviour
         speedEnemy = curretnSpeed;
     }
 
-    public void TakeDamage(float damage)
-    {
-        life -= damage;
-        animator.SetTrigger("Hurt");
-        if (life <= 0)
-        {
-            Death();
-        }
-    }
+    
     void Update()
     {
         EnemyMovement();
@@ -58,11 +56,18 @@ public class EnemyController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 target;
-
-        if (isInRange)
-            target = new Vector2(player.transform.position.x, transform.position.y);
+        if (OnGrount())
+        {
+            if (isInRange)
+                target = new Vector2(player.transform.position.x, transform.position.y);
+            else
+                target = patrolList[currentPatrolPoint].position;
+        }
         else
+        {
             target = patrolList[currentPatrolPoint].position;
+            isInRange = false;
+        }
 
         rb.transform.position = Vector2.MoveTowards(transform.position, target, curretnSpeed * Time.fixedDeltaTime);
 
@@ -92,6 +97,19 @@ public class EnemyController : MonoBehaviour
                 Flip(180);
             }
         }
+    }
+
+    private bool OnGrount()
+    {
+        groundInfo = Physics2D.Raycast(groundPoint.position, Vector2.down, distance, groundLayer);
+        Debug.DrawRay(groundPoint.position, Vector2.down, Color.red, distance);
+
+        if (!groundInfo.collider)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     private void PlayerFollow()
@@ -135,12 +153,11 @@ public class EnemyController : MonoBehaviour
     {
         animator.SetTrigger("AttackTrigger");
         Collider2D[] objects = Physics2D.OverlapCircleAll(damageController.position, attackRange);
-        print("Atake");
         foreach (Collider2D colisioned in objects)
         {
             if (colisioned.CompareTag("Player"))
             {
-                colisioned.transform.GetComponent<HealthController>().TakeDamage(damage);
+                colisioned.transform.GetComponent<HealthController>().TakeDamage(damage, colisioned.tag);
             }
         }
     }
@@ -150,12 +167,21 @@ public class EnemyController : MonoBehaviour
         transform.eulerAngles = new Vector3(0, value, 0);
     }
 
-    private void Death()
+    public void Death()
     {
         animator.SetTrigger("Death");
         Destroy(gameObject);
     }
-
+    public void TakeDamage(int damage)
+    {
+        life -= damage;
+        animator.SetTrigger("Hurt");
+        if (life <= 0)
+        {
+            life = 0;
+            Death();
+        }
+    }
     void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;

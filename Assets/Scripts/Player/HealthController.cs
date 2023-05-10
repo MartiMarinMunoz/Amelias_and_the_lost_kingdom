@@ -4,22 +4,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class HealthController : MonoBehaviour
 {
-    [Header("Health Settings")]
-    [SerializeField] public float currentHealth;
+
     [SerializeField] private float maxHealth;
     [SerializeField] private Image healthBar;
     [SerializeField] private TextMeshProUGUI sheetsTMP;
     [SerializeField] private int sheetsSaves;
-    Animator anim;
+    [SerializeField] private Animator anim;
+
+    private float currentHealth;
+    private EnemyController enemyController;
+
 
     void Start()
     {
         currentHealth = maxHealth;
-        sheetsTMP.text = sheetsSaves.ToString();
         anim = GetComponentInChildren<Animator>();
+        sheetsTMP.text = sheetsSaves.ToString();
     }
 
     private void Update()
@@ -35,16 +39,23 @@ public class HealthController : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, string tag)
     {
+        if (gameObject.tag != tag)
+            return;
+
         currentHealth -= damage;
         anim.SetTrigger("Damage");
         HPBarUpdate();
-        if (currentHealth <= 0)
+
+        if (currentHealth == 0)
         {
+            currentHealth = 0;
             Destroy(gameObject);
         }
+        return;
     }
+
 
     public void AddHealth(float _value)
     {
@@ -64,6 +75,7 @@ public class HealthController : MonoBehaviour
 
     public void HPBarUpdate()
     {
+
         healthBar.fillAmount = (float)currentHealth / (float)maxHealth;
         if (currentHealth > 120)
         {

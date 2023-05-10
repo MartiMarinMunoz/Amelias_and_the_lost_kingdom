@@ -4,55 +4,65 @@ using UnityEngine;
 
 public class EnemyShooting : MonoBehaviour
 {
-    public GameObject bullet;
-    public Transform bulletPos;
+    [SerializeField] private int life;
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private Transform bulletPos;
     private float timer;
     private Animator animator;
     private GameObject player;
 
-    // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
-
         float distance = Vector2.Distance(transform.position, player.transform.position);
-        
-
 
         if(distance < 6)
         {
             timer += Time.deltaTime;
 
-            if (timer > 1.5)
+            
+            if(timer > 1f)
+                animator.SetTrigger("Attack");
+            if (timer > 1.5f)
             {
                 timer = 0;
                 shoot();
             }
         }
 
-        float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-        if (distanceToPlayer < 7f)
-        {
-            animator.SetBool("isTrigger", true);
+        //float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+        //if (distanceToPlayer < 7f)
+        //{
+        //    animator.SetTrigger("Attack");
 
-        }
-        else if (distanceToPlayer > 7f)
-        {
-            animator.SetBool("isTrigger", false);
-        }
-
-
+        //}
     }
 
     void shoot()
     {
         Instantiate(bullet, bulletPos.position, Quaternion.identity);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        life -= damage;
+        animator.SetTrigger("Hurt");
+
+        if (life == 0)
+        {
+            life = 0;
+            Death();
+        }
+    }
+
+    public void Death()
+    {
+        animator.SetTrigger("Death");
+        Destroy(gameObject, 0.1f);
     }
 }

@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class EnemyBulletScript : MonoBehaviour
 {
-    public GameObject player;
-    private Rigidbody2D rb;
-    public float force;
+    [SerializeField] private float force;
+    [SerializeField] private int damage;
     private float timer;
-    public int damage;
-    public HealthController HealthController;
-    public PlayerController playerController;
-    // Start is called before the first frame update
+    private GameObject player;
+    private Rigidbody2D rb;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -25,7 +23,7 @@ public class EnemyBulletScript : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, rot);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         timer += Time.deltaTime;
@@ -36,12 +34,11 @@ public class EnemyBulletScript : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
-
-            other.gameObject.GetComponent<HealthController>().currentHealth -= 20;
+            collision.gameObject.GetComponent<HealthController>().TakeDamage(damage, collision.gameObject.tag);
             Destroy(gameObject);
         }
     }

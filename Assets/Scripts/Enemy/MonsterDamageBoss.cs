@@ -22,7 +22,7 @@ public class MonsterDamageBoss : MonoBehaviour
             {
                 playerController.KnockFromRight = false;
             }
-            HealthController.TakeDamage(damage);
+            //HealthController.TakeDamage(damage);
         }
     }
 }

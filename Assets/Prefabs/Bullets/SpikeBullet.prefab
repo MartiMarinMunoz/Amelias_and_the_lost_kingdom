@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6929371682369277736
 SpriteRenderer:
@@ -120,11 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc6a40c5fd6d73c468fdf4e88bdc6eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   force: 5
   damage: 15
-  HealthController: {fileID: 0}
-  playerController: {fileID: 0}
 --- !u!61 &4385978866615618111
 BoxCollider2D:
   m_ObjectHideFlags: 0

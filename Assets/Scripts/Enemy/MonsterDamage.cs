@@ -22,7 +22,7 @@ public class MonsterDamage : MonoBehaviour
             {
                 player.KnockFromRight = false;
             }
-            collision.gameObject.GetComponent<HealthController>().TakeDamage(damage);
+            collision.gameObject.GetComponent<HealthController>().TakeDamage(damage, collision.gameObject.tag);
         }
     }
 }

@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     [Header("Attcak Settings")]
     [SerializeField] private Transform damageController;
     [SerializeField] private float damageRadio;
-    [SerializeField] private float damage;
+    [SerializeField] private int damage;
     [SerializeField] private float nextAttack;
 
     [Header("KnockBack Settings")]
@@ -140,6 +140,10 @@ public class PlayerController : MonoBehaviour
             if (colisioned.CompareTag("Enemy"))
             {
                 colisioned.transform.GetComponent<EnemyController>().TakeDamage(damage);
+            }
+            if (colisioned.CompareTag("EnemyRang"))
+            {
+                colisioned.transform.GetComponent<EnemyShooting>().TakeDamage(damage);
             }
         }
     }

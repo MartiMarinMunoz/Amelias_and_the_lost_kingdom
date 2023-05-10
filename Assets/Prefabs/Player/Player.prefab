@@ -65,7 +65,7 @@ MonoBehaviour:
   totalJump: 1
   damageController: {fileID: 6974577494330776257}
   damageRadio: 0.3
-  damage: 20
+  damage: 10
   nextAttack: 0
   KBForce: 0
   KBCounter: 0
@@ -83,11 +83,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2557bf6d0f183b4db02ddfa1da87b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 0
+  currentCharaterType: 0
   maxHealth: 120
   healthBar: {fileID: 0}
   sheetsTMP: {fileID: 0}
-  sheetsSaves: 3
+  sheetsSaves: 0
+  anim: {fileID: 6974577495000768663}
 --- !u!114 &6974577493798045316
 MonoBehaviour:
   m_ObjectHideFlags: 0
