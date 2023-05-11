@@ -12,9 +12,6 @@ GameObject:
   - component: {fileID: 3511725713894671384}
   - component: {fileID: 3511725713894671385}
   - component: {fileID: 3511725713894671388}
-  - component: {fileID: 3511725713894671389}
-  - component: {fileID: 3511725713894671390}
-  - component: {fileID: 3511725713894671391}
   - component: {fileID: 3511725713894671379}
   m_Layer: 0
   m_Name: EnemyBoss01
@@ -36,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &3511725713894671384
 Animator:
@@ -136,54 +133,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9398651, y: 1.4795907}
   m_EdgeRadius: 0
---- !u!114 &3511725713894671389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3511725713894671387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cbdb1539daedfd46bb97fe856a7166b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  life: 100
-  player: {fileID: 0}
-  damage: 10
---- !u!114 &3511725713894671390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3511725713894671387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f510deed1cd76b84581abfca07bb0105, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pointA: {fileID: 0}
-  pointB: {fileID: 0}
-  speed: 0.61
-  playerTransform: {fileID: 0}
-  isChasing: 0
-  chaseDistance: 2
---- !u!114 &3511725713894671391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3511725713894671387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 000a149dc3edc7148bc6f5281f87b85a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 30
-  HealthController: {fileID: 0}
-  playerController: {fileID: 0}
 --- !u!50 &3511725713894671379
 Rigidbody2D:
   serializedVersion: 4

@@ -60,7 +60,7 @@ public class HealthController : MonoBehaviour
         {
             currentHealth = 0;
             settingsController.isDeath = true;
-            anim.SetTrigger("Death");
+            //anim.SetTrigger("Death");
             //Destroy(gameObject);
         }
     }

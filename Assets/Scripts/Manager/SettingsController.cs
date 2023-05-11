@@ -5,11 +5,11 @@ using UnityEngine;
 public class SettingsController : MonoBehaviour
 {
 
-    [Header("Panel")]
+    [Header("Panels")]
     [SerializeField] private GameObject settingsPanel;
-    [SerializeField] private GameObject DeathPanel;
+    [SerializeField] private GameObject deathPanel;
     [SerializeField] private PlayerController player;
-    [SerializeField] private HealthController playerHealt;
+    [SerializeField] private HealthController playerHealth;
     private bool isPaused;
     public bool isDeath { get; set; }
 
@@ -18,7 +18,7 @@ public class SettingsController : MonoBehaviour
         isPaused = false;
         isDeath = false;
         Time.timeScale = 1;
-        DeathPanel.SetActive(false);
+        deathPanel.SetActive(false);
     }
     private void Update()
     {
@@ -42,18 +42,18 @@ public class SettingsController : MonoBehaviour
 
     private void DeathPlayer()
     {
-        DeathPanel.SetActive(true);
+        deathPanel.SetActive(true);
         player.enabled = false;
         Time.timeScale = 0;
     }
 
-    public void Rebot()
+    public void Restart()
     {
         Time.timeScale = 1;
         isDeath = false;
         player.enabled = true;
-        playerHealt.AddHealth(120);
-        DeathPanel.SetActive(false);
+        playerHealth.AddHealth(120);
+        deathPanel.SetActive(false);
         StartCoroutine(player.MoveCharacter(player.initialPosition, player.initialRotation));
     }
 }
