@@ -7,34 +7,30 @@ public class SettingsController : MonoBehaviour
 
     [Header("Panel")]
     [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private GameObject DeathPanel;
     [SerializeField] private PlayerController player;
+    [SerializeField] private HealthController playerHealt;
     private bool isPaused;
-    public bool isDead { get; set; }
+    public bool isDeath { get; set; }
 
     private void Start()
     {
         isPaused = false;
-        isDead = false;
+        isDeath = false;
         Time.timeScale = 1;
+        DeathPanel.SetActive(false);
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && isDead == false)
+        if(Input.GetKeyDown(KeyCode.Escape) && isDeath == false)
         {
             SetPause();
         }
-        //if (Input.GetKeyDown(KeyCode.Escape) && !isPaused)
-        //{
-        //    Time.timeScale = 0;
-        //    isPaused = true;
-        //    OpenPanel(settingsPanel);
-        //}   
-        //else if(Input.GetKeyDown(KeyCode.Escape) && isPaused)
-        //{
-        //    Time.timeScale = 1;
-        //    isPaused = false;
-        //    ClosePanel(settingsPanel);
-        //}
+        if(isDeath)
+        {
+            DeathPlayer();
+        }
+
     }
     public void SetPause()
     {
@@ -43,18 +39,21 @@ public class SettingsController : MonoBehaviour
         Time.timeScale = isPaused ? 0 : 1;
         player.enabled = !isPaused;
     }
-    //public void OpenPanel(GameObject panel)
-    //{
-    //    Time.timeScale = 0;
-    //    panel.SetActive(true);
-    //    Cursor.lockState = CursorLockMode.None;
-    //}
 
-    //public void ClosePanel(GameObject panel)
-    //{
-    //    Time.timeScale = 1;
-    //    panel.SetActive(false);
-    //    Cursor.lockState = CursorLockMode.Locked;
-    //}
+    private void DeathPlayer()
+    {
+        DeathPanel.SetActive(true);
+        player.enabled = false;
+        Time.timeScale = 0;
+    }
 
+    public void Rebot()
+    {
+        Time.timeScale = 1;
+        isDeath = false;
+        player.enabled = true;
+        playerHealt.AddHealth(120);
+        DeathPanel.SetActive(false);
+        StartCoroutine(player.MoveCharacter(player.initialPosition, player.initialRotation));
+    }
 }

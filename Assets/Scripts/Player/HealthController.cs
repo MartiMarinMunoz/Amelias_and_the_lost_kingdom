@@ -14,13 +14,14 @@ public class HealthController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI sheetsTMP;
     [SerializeField] private int sheetsSaves;
     [SerializeField] private Animator anim;
-
+    
+    private SettingsController settingsController;
     private float currentHealth;
-    private EnemyController enemyController;
 
 
     void Start()
     {
+        settingsController = GameObject.FindGameObjectWithTag("UI").GetComponent<SettingsController>();
         currentHealth = maxHealth;
         anim = GetComponentInChildren<Animator>();
         sheetsTMP.text = sheetsSaves.ToString();
@@ -33,9 +34,16 @@ public class HealthController : MonoBehaviour
         {
             if (currentHealth < 120)
             {
-                AddHealth(20);
+                AddHealthSheets(20);
                 sheetsTMP.text = sheetsSaves.ToString();
             }
+        }
+
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            settingsController.isDeath = true;
+            //Destroy(gameObject);
         }
     }
 
@@ -48,16 +56,17 @@ public class HealthController : MonoBehaviour
         anim.SetTrigger("Damage");
         HPBarUpdate();
 
-        if (currentHealth == 0)
+        if (currentHealth <= 0)
         {
             currentHealth = 0;
-            Destroy(gameObject);
+            settingsController.isDeath = true;
+            anim.SetTrigger("Death");
+            //Destroy(gameObject);
         }
-        return;
     }
 
 
-    public void AddHealth(float _value)
+    public void AddHealthSheets(float _value)
     {
         if (sheetsSaves > 0)
         {
@@ -65,6 +74,11 @@ public class HealthController : MonoBehaviour
             sheetsSaves--;
             sheetsTMP.text = sheetsSaves.ToString();
         }
+    }
+
+    public void AddHealth(float value)
+    {
+        currentHealth = Mathf.Clamp(currentHealth + value, 0, maxHealth);
     }
 
     public void UpdateHoja()

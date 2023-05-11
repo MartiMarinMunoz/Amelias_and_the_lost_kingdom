@@ -53,7 +53,7 @@ public class EnemyShooting : MonoBehaviour
         life -= damage;
         animator.SetTrigger("Hurt");
 
-        if (life == 0)
+        if (life <= 0)
         {
             life = 0;
             Death();
