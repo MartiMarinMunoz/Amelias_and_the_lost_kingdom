@@ -124,7 +124,7 @@ Transform:
   - {fileID: 9016806430102685179}
   - {fileID: 3641660759113739080}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3358524794089429146
 GameObject:
@@ -318,9 +318,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cbdb1539daedfd46bb97fe856a7166b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 30
-  damage: 50
-  curretnSpeed: 2
+  life: 60
+  damage: 10
+  curretnSpeed: 1.5
   patrolList:
   - {fileID: 1106083435069887752}
   - {fileID: 1106083434589973051}

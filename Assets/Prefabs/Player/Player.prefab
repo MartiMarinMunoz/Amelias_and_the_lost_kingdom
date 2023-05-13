@@ -39,7 +39,7 @@ Transform:
   - {fileID: 6974577494330776257}
   - {fileID: 6974577494364178837}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6974577493798045314
 MonoBehaviour:
@@ -65,12 +65,8 @@ MonoBehaviour:
   totalJump: 1
   damageController: {fileID: 6974577494330776257}
   damageRadio: 0.3
-  damage: 10
+  damage: 20
   nextAttack: 0
-  KBForce: 0
-  KBCounter: 0
-  KBTotalTime: 0
-  KnockFromRight: 0
 --- !u!114 &6974577493798045317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,7 +79,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2557bf6d0f183b4db02ddfa1da87b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentCharaterType: 0
   maxHealth: 120
   healthBar: {fileID: 0}
   sheetsTMP: {fileID: 0}

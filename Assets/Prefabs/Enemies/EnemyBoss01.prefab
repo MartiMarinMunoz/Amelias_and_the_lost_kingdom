@@ -73,9 +73,9 @@ GameObject:
   - component: {fileID: 3764976002022946844}
   - component: {fileID: 3764976002022946846}
   - component: {fileID: 3764976002022946847}
+  - component: {fileID: 5739137874909961864}
   - component: {fileID: 3764976002022946842}
   - component: {fileID: 3764976002022946837}
-  - component: {fileID: 5739137874909961864}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
@@ -163,7 +163,7 @@ SpriteRenderer:
   m_SortingOrder: 2
   m_Sprite: {fileID: -170300554, guid: 71e3737c01dcea64cb19b6541846660c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2.7428572, y: 2.7428572}
@@ -172,6 +172,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5739137874909961864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3764976002022946845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cbdb1539daedfd46bb97fe856a7166b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: 80
+  damage: 20
+  curretnSpeed: 0.8
+  patrolList:
+  - {fileID: 3507988024833815949}
+  - {fileID: 6114041714881003712}
+  groundPoint: {fileID: 7861931620908261899}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  detectionRange: 3.35
+  damageController: {fileID: 4632858718232573226}
+  attackRange: 0.7
+  attackDelay: 1
 --- !u!61 &3764976002022946842
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -219,32 +245,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &5739137874909961864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3764976002022946845}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cbdb1539daedfd46bb97fe856a7166b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  life: 30
-  damage: 20
-  curretnSpeed: 2
-  patrolList:
-  - {fileID: 3507988024833815949}
-  - {fileID: 6114041714881003712}
-  groundPoint: {fileID: 7861931620908261899}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  detectionRange: 3.35
-  damageController: {fileID: 4632858718232573226}
-  attackRange: 0.7
-  attackDelay: 1
 --- !u!1 &5198502421897239552
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,7 +302,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6124010938863909137}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.48, y: 0.13, z: 0}
+  m_LocalPosition: {x: 0.428, y: 0.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -333,7 +333,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6935548012974978883}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.433, y: -0.527, z: 0}
+  m_LocalPosition: {x: 0.429, y: -0.527, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -371,5 +371,5 @@ Transform:
   - {fileID: 3764976002022946844}
   - {fileID: 6419840075217362459}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
