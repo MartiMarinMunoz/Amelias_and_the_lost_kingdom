@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Programmer
+  m_text: Artist and Programmer
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b633b6dee60f2b74e8bdc98297f3c5d3, type: 2}
   m_sharedMaterial: {fileID: -4761202740924118695, guid: b633b6dee60f2b74e8bdc98297f3c5d3, type: 2}
@@ -1492,7 +1492,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8, y: -27.298641}
+  m_AnchoredPosition: {x: -5.4, y: -27.298641}
   m_SizeDelta: {x: 82.6811, y: 23.702}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &460167490
@@ -2011,8 +2011,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6, y: -28.3}
-  m_SizeDelta: {x: 148.7676, y: 23.702}
+  m_AnchoredPosition: {x: -7.6, y: -28.3}
+  m_SizeDelta: {x: 192.2491, y: 23.702}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &676907691
 MonoBehaviour:
@@ -2034,7 +2034,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Designer and Programmer
+  m_text: Artist, Game Designer and Programmer
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b633b6dee60f2b74e8bdc98297f3c5d3, type: 2}
   m_sharedMaterial: {fileID: -4761202740924118695, guid: b633b6dee60f2b74e8bdc98297f3c5d3, type: 2}
