@@ -36,6 +36,8 @@ public class EnemyController : MonoBehaviour
     private bool isInRange = false;
     private float attackTimer = 0f;
 
+    [SerializeField] private float enemyAnimationPlay;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -170,7 +172,7 @@ public class EnemyController : MonoBehaviour
     public void Death()
     {
         animator.SetTrigger("Death");
-        Destroy(gameObject, 1.25f);
+        Destroy(gameObject, enemyAnimationPlay);
     }
     public void TakeDamage(int damage)
     {
