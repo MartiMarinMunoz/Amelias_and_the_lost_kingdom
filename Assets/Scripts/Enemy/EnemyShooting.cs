@@ -63,6 +63,6 @@ public class EnemyShooting : MonoBehaviour
     public void Death()
     {
         animator.SetTrigger("Death");
-        Destroy(gameObject, 0.1f);
+        Destroy(gameObject, 0.35f);
     }
 }

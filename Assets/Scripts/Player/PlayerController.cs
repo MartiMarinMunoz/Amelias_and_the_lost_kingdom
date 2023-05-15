@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
     public float KBForce;
     public float KBCounter;
     public float KBTotalTime;
-
     public bool KnockFromRight;
     //[SerializeField] private GameObject meleeRadio;
 
@@ -133,6 +132,7 @@ public class PlayerController : MonoBehaviour
         {
             OnAttack();
             cooldownAttack = nextAttack;
+            print("Atake");
         }
     }
     private void OnAttack()

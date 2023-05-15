@@ -66,7 +66,7 @@ Transform:
   m_Children:
   - {fileID: 6695613221714389500}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6695613222202957126
 Animator:
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e445c5f385d6342b6fd7f003c89d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 40
+  life: 80
   bullet: {fileID: 8593727931102214683, guid: d3740430fdec7c54a9b5712832cbe15b, type: 3}
   bulletPos: {fileID: 6695613221714389500}
 --- !u!50 &2022741847
@@ -163,7 +163,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6695613222202957123}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
