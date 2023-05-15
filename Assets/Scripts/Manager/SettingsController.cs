@@ -49,11 +49,11 @@ public class SettingsController : MonoBehaviour
 
     public void Restart()
     {
-        Time.timeScale = 1;
+        State.positionCheck = player.initialPosition;
+        State.rotationCheck = player.initialRotation;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
         isDeath = false;
         player.enabled = true;
-        playerHealth.AddHealth(120);
-        deathPanel.SetActive(false);
-        StartCoroutine(player.MoveCharacter(player.initialPosition, player.initialRotation));
+        State.checkPlayer = true;
     }
 }

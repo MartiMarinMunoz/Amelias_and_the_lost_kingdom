@@ -40,5 +40,8 @@ public class OptionsMenu : MonoBehaviour
 public class State
 {
     public static float volume = 0.5f;
+    public static Vector2 positionCheck;
+    public static Quaternion rotationCheck;
+    public static bool checkPlayer = false;
 
 }

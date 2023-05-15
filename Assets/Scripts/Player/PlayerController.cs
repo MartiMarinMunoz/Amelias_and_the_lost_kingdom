@@ -43,9 +43,14 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        if (State.checkPlayer)
+        {
+            StartCoroutine(MoveCharacter(State.positionCheck, State.rotationCheck));
+            State.checkPlayer = false;
+        }
         //health = GetComponent<HealthController>();
-        initialPosition = transform.position;
-        initialRotation = transform.rotation;
+        //initialPosition = transform.position;
+        //initialRotation = transform.rotation;
     }
 
     void Update()
